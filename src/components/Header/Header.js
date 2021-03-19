@@ -7,36 +7,39 @@ import { Link } from "react-router-dom";
 
 const Header = () => {
   const [loggedInUser, setLoggedInUser] = useContext(userContext);
-  
-    
+
   return (
     <div className="header">
-      <h1>name:{loggedInUser.name}</h1>
       <Navbar className="text-center" bg="dark" variant="dark">
         <Navbar.Brand className="logo" href="#home">
           <img src={logo} alt="" />
         </Navbar.Brand>
-        <Nav className=" text-right">
-          <div className="all-link">
-            <Link to="/home"> Home </Link>
-            <Link to="/destination"> Destination </Link>
-            <Link to="/home"> Blog</Link>
-            <Link to="/home"> Contact </Link>
+        <div className="menu ">
+          <Link to="/login">
+            <li>Contact</li>
+          </Link>
+          <Link to="/login">
+            <li>Blog</li>
+          </Link>
+          <Link to="/home">
+            <li>Destination</li>
+          </Link>
+          <Link to="/home">
+            <li>Home</li>
+          </Link>
+          <div className="col-sm-12 profile-name">
+            {loggedInUser.showName ? (
+              <li className="profile-name ">{loggedInUser.name}</li>
+            ) : (
+              <h4 className="profile-name">
+                {(loggedInUser.fName[0], loggedInUser.lName[0])}
+              </h4>
+            )}
           </div>
-
-          {/* <Nav.Link className="menu-items" href="#features">
-            Destination
-          </Nav.Link>
-          <Nav.Link className="menu-items" href="#pricing">
-            Blog
-          </Nav.Link>
-          <Nav.Link className="menu-items" href="#pricing">
-            Contact
-          </Nav.Link> */}
-        </Nav>
+        </div>
         {loggedInUser.isLoggedIn ? (
           <Link to="/login">
-            <Button variant="outline-info">Login</Button>
+            <Button variant="outline-info">Sign out</Button>
           </Link>
         ) : (
           <Link to="/login">

@@ -16,3 +16,45 @@
   float: left;
   width: 45%;
 }
+.orange-part {
+  text-align: left;
+  background-color: orange;
+  padding: 10px;
+  border-radius: 10px;
+}
+.search-result {
+  width: 80%;
+  padding: 10px;
+  margin: auto;
+}
+.result-img img {
+  width: 60px;
+  margin-right: 20px;
+}
+
+.price {
+  float: right;
+}
+.text-icon-area {
+  margin-left: 40px;
+}
+.search-result {
+  width: 400px;
+}
+.bottom {
+  width: 350px;
+  margin: auto;
+  /* padding: 10px; */
+  float: right;
+  /* border: 1px solid red; */
+  /* margin: 10px; */
+  box-shadow: 5px 5px 10px gray;
+  border-radius: 10px;
+}
+.result-img {
+  float: left;
+  margin-right: 20px;
+}
+.all-result {
+  margin-left: 20px;
+}

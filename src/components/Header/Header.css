@@ -1,5 +1,5 @@
 .logo img {
-  width: 100px;
+  width: 150px;
   background-color: white;
 }
 .menu-items {
@@ -12,4 +12,25 @@
   /* float: right; */
   text-align: center;
   margin-left: 100px;
+}
+.menu {
+  width: 100%;
+  margin: auto;
+}
+.menu li {
+  color: white;
+  float: right;
+  list-style: none;
+  margin-right: 20px;
+  padding: 10px;
+  font-size: 20px;
+}
+.profile-name li {
+  color: rgb(213, 233, 37);
+  font-size: 26px;
+  font-weight: 600;
+  text-decoration: underline;
+}
+li:hover {
+  cursor: pointer;
 }

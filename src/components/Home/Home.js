@@ -21,6 +21,8 @@ const Home = () => {
     success: false,
     showError: false,
     isLoggedIn: false,
+    fName: "",
+    lName: "",
   });
   return (
     <userContext.Provider value={[loggedInUser, setLoggedInUser]}>
@@ -36,9 +38,9 @@ const Home = () => {
           <Route path="/login">
             <Login></Login>
           </Route>
-          <Route path="/destination/:name">
+          <PrivateRoute path="/destination/:name">
             <Destination></Destination>
-          </Route>
+          </PrivateRoute>
           <Route path="*">
             <Error404></Error404>
           </Route>

@@ -30,6 +30,9 @@ const Login = () => {
     success: false,
     showError: false,
     isLoggedIn: false,
+    fName: "",
+    lName: "",
+    showName: false,
   });
   console.log(user);
   var googleProvider = new firebase.auth.GoogleAuthProvider();
@@ -51,6 +54,7 @@ const Login = () => {
           error: "",
           showError: false,
           isLoggedIn: true,
+          showName: true,
         };
         setUser(userInfo);
         setLoggedInUser(userInfo);
@@ -103,6 +107,7 @@ const Login = () => {
             error: "",
             showError: false,
             isLoggedIn: true,
+            showName: false,
           };
           setUser(userInfo);
           setLoggedInUser(userInfo);
@@ -138,6 +143,7 @@ const Login = () => {
           error: "",
           showError: false,
           isLoggedIn: true,
+          showName: true,
         };
         setUser(userInfo);
         setLoggedInUser(userInfo);
@@ -154,6 +160,22 @@ const Login = () => {
         setLoggedInUser(userError);
       });
   };
+
+  const handleName = (e) => {
+    if (e.target.name === "fName") {
+      const userInfo = { ...user };
+      userInfo[e.target.name] = [e.target.value];
+      setUser(userInfo);
+      setLoggedInUser(userInfo);
+      console.log(user);
+    }
+    if (e.target.name === "lName") {
+      const userInfo = { ...user };
+      userInfo[e.target.name] = [e.target.value];
+      setUser(userInfo);
+      setLoggedInUser(userInfo);
+    }
+  };
   return (
     <div className="text-center login-main">
       <div className="create-account-main-div">
@@ -166,10 +188,25 @@ const Login = () => {
               <p style={{ color: "green" }}>User Logged in successfully </p>
             )
           )}
+
           <form action="" className="form">
-            {newUser && <input type="text" placeholder="first Name" />}
+            {newUser && (
+              <input
+                onBlur={handleName}
+                type="text"
+                placeholder="first Name"
+                name="fName"
+              />
+            )}
             <br />
-            {newUser && <input type="text" placeholder="Last Name" />}
+            {newUser && (
+              <input
+                onBlur={handleName}
+                type="text"
+                placeholder="Last Name"
+                name="lName"
+              />
+            )}
             <br />
             <input
               onBlur={handleBlur}

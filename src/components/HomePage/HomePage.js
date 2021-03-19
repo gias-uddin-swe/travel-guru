@@ -12,7 +12,6 @@ const HomePage = () => {
   const bike = "bike";
   return (
     <div className="home-page container">
-      <h1>This is Home Page </h1>
       <div className="row">
         <div className="col-lg-3 col-md-6 image-link">
           <div className="main-image">
