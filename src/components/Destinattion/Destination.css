@@ -1,0 +1,18 @@
+.map-img img {
+  width: 500px;
+}
+.search-box {
+  width: 90%;
+  background-color: white;
+  margin: auto;
+  padding: 10px;
+}
+.search-box input {
+  width: 70%;
+  padding: 7px;
+}
+.search-box label {
+  /* text-align: left; */
+  float: left;
+  width: 45%;
+}

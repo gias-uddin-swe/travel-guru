@@ -1,0 +1,49 @@
+.login-main {
+  background-color: white;
+}
+.create-account-main-div {
+  width: 90%;
+  margin: auto;
+  /* border: 1px solid red; */
+  margin-top: 50px;
+}
+.form input {
+  width: 70%;
+  padding: 9px;
+  border: none;
+  border-bottom: 1px solid gray;
+  margin-top: 12px;
+}
+.form button {
+  margin-top: 25px;
+  width: 70%;
+  margin-bottom: 5px;
+}
+.input-box {
+  padding: 20px;
+  /* border: 1px solid rgb(10, 10, 10); */
+  width: 500px;
+  box-shadow: 10px 10px 40px gray;
+  margin: auto;
+  border-radius: 10px;
+}
+.google-btn {
+  margin-top: 20px;
+  padding: 5px 30px;
+  border-radius: 50px;
+  background-color: white;
+  border: 1px solid black;
+  transition: 0.5s;
+}
+.google-btn:hover {
+  background-color: rgb(33, 33, 185);
+  color: white;
+  border: 1px solid rgb(71, 7, 221);
+}
+.google-btn img {
+  margin-right: 10px;
+  width: 25px;
+}
+.totgle-btn {
+  margin-top: 5px;
+}

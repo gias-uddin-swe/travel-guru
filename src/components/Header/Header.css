@@ -1,0 +1,15 @@
+.logo img {
+  width: 100px;
+  background-color: white;
+}
+.menu-items {
+  text-align: center;
+}
+.text-right {
+  text-align: center;
+}
+.all-link {
+  /* float: right; */
+  text-align: center;
+  margin-left: 100px;
+}
