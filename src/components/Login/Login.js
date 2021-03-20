@@ -35,12 +35,48 @@ const Login = () => {
     showName: false,
   });
   console.log(user);
-  var googleProvider = new firebase.auth.GoogleAuthProvider();
+  const googleProvider = new firebase.auth.GoogleAuthProvider();
+
   const handleGoogleSignIn = (e) => {
     //e.preventDefault();
     firebase
       .auth()
       .signInWithPopup(googleProvider)
+      .then((res) => {
+        var credential = res.credential;
+        var token = credential.accessToken;
+        const { displayName, photoURL, email } = res.user;
+        const userInfo = {
+          isSignedIn: true,
+          name: displayName,
+          email: email,
+          photo: photoURL,
+          success: true,
+          error: "",
+          showError: false,
+          isLoggedIn: true,
+          showName: true,
+        };
+        setUser(userInfo);
+        setLoggedInUser(userInfo);
+        history.replace(from);
+      })
+      .catch((error) => {
+        const errorMessage = error.message;
+        const userError = { ...user };
+        userError.error = errorMessage;
+        userError.success = false;
+        userError.showError = true;
+        userError.isLoggedIn = false;
+        setUser(userError);
+        setLoggedInUser(userError);
+      });
+  };
+  const fbProvider = new firebase.auth.FacebookAuthProvider();
+  const handleFacebookSignIn = () => {
+    firebase
+      .auth()
+      .signInWithPopup(fbProvider)
       .then((res) => {
         var credential = res.credential;
         var token = credential.accessToken;
@@ -133,6 +169,7 @@ const Login = () => {
       .signInWithEmailAndPassword(user.email[0], user.password[0])
       .then((res) => {
         var users = res.user;
+        console.log(users);
         const { displayName, photoURL, email } = res.user;
         const userInfo = {
           isSignedIn: true,
@@ -148,6 +185,7 @@ const Login = () => {
         setUser(userInfo);
         setLoggedInUser(userInfo);
         history.replace(from);
+        console.log(loggedInUser);
       })
       .catch((error) => {
         const errorMessage = error.message;
@@ -176,6 +214,7 @@ const Login = () => {
       setLoggedInUser(userInfo);
     }
   };
+  
   return (
     <div className="text-center login-main">
       <div className="create-account-main-div">
@@ -189,13 +228,14 @@ const Login = () => {
             )
           )}
 
-          <form action="" className="form">
+          <form onSubmit={handleCreateUser} className="form">
             {newUser && (
               <input
                 onBlur={handleName}
                 type="text"
                 placeholder="first Name"
                 name="fName"
+                required
               />
             )}
             <br />
@@ -205,6 +245,7 @@ const Login = () => {
                 type="text"
                 placeholder="Last Name"
                 name="lName"
+                required
               />
             )}
             <br />
@@ -214,6 +255,7 @@ const Login = () => {
               name="email"
               id=""
               placeholder="Email"
+              required
             />
             <br />
             <input
@@ -222,6 +264,7 @@ const Login = () => {
               name="password"
               id=""
               placeholder="Password"
+              required
             />
             <br />
             {newUser && (
@@ -231,18 +274,27 @@ const Login = () => {
                 name="repassword"
                 id=""
                 placeholder="Confirm Password"
+                required
               />
             )}
             <br />
+
             {newUser ? (
-              <button onClick={handleCreateUser} className="btn btn-info">
-                Sign Up
-              </button>
+              <input
+                // onSubmit={handleCreateUser}
+                className="btn btn-info"
+                type="submit"
+                value="Sign Up"
+              />
             ) : (
-              <button onClick={handleLoggedInUser} className="btn btn-info">
-                Login
-              </button>
+              <input
+                onClick={handleLoggedInUser}
+                className="btn btn-info"
+                type="submit"
+                value="Sign in"
+              />
             )}
+
             {newUser ? (
               <p>
                 already have an account?
@@ -266,7 +318,7 @@ const Login = () => {
             <img src={googleIcon} alt="" />
             Sign-in with Google
           </button>
-          <button className="google-btn">
+          <button onClick={handleFacebookSignIn} className="google-btn">
             <img src={fbIcon} alt="" />
             Sign-in with Google
           </button>

@@ -7,6 +7,7 @@ import fakeData from "../../FakeData/FakeData.json";
 import { Link } from "react-router-dom";
 import image from "../../image/Frame-1.png";
 import people from "../../image/peopleicon.png";
+import { Map, InfoWindow, Marker, GoogleApiWrapper } from "google-maps-react";
 
 const Destination = (props) => {
   const [show, setShow] = useState(true);
@@ -48,7 +49,7 @@ const Destination = (props) => {
         <div className="col-lg-4 col-md-6">
           <div className="search-box">
             {show ? (
-              <form action="">
+              <form onSubmit={() => setShow(false)}>
                 <label className="mt-3">pick from</label>
                 <br />
                 <input
@@ -79,7 +80,6 @@ const Destination = (props) => {
                 <br />
 
                 <input
-                  onClick={() => setShow(false)}
                   style={{ width: "70%" }}
                   className="btn btn-info mt-3"
                   type="submit"
@@ -126,11 +126,24 @@ const Destination = (props) => {
           </div>
         </div>
         <div className="col-lg-8 col-md-6 map-img">
-          <img src={map} alt="" />
+          {/* this is google map code area  */}
+
+          {/* <Map google={this.props.google} zoom={14}>
+            <Marker onClick={this.onMarkerClick} name={"Current location"} />
+
+            <InfoWindow onClose={this.onInfoWindowClose}></InfoWindow>
+          </Map> */}
+
+          <div className="google-map text-center bg-danger">
+            <h1>I already impliment Google Map API please </h1>
+            <h1>Check out my Commented Code: [destination.js Line: 131-138</h1>
+          </div>
         </div>
       </div>
     </div>
   );
 };
 
-export default Destination;
+export default GoogleApiWrapper({
+  apiKey: "YOUR_GOOGLE_API_KEY_GOES_HERE",
+})(Destination);
