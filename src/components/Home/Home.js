@@ -26,6 +26,8 @@ const Home = () => {
   });
   return (
     <userContext.Provider value={[loggedInUser, setLoggedInUser]}>
+      
+
       <Router>
         <Header></Header>
         <Switch>

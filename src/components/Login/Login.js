@@ -14,11 +14,11 @@ if (!firebase.apps.length) {
 
 const Login = () => {
   const [loggedInUser, setLoggedInUser] = useContext(userContext);
+  console.log(loggedInUser);
   const [newUser, setNewUser] = useState(false);
   const history = useHistory();
   const location = useLocation();
   let { from } = location.state || { from: { pathname: "/" } };
-  console.log(newUser);
   const [user, setUser] = useState({
     name: "",
     email: "",
@@ -34,7 +34,6 @@ const Login = () => {
     lName: "",
     showName: false,
   });
-  console.log(user);
   const googleProvider = new firebase.auth.GoogleAuthProvider();
 
   const handleGoogleSignIn = (e) => {
@@ -132,7 +131,9 @@ const Login = () => {
         .auth()
         .createUserWithEmailAndPassword(user.email[0], user.password[0])
         .then((res) => {
-          var users = res.user;
+          const fName = user.fName[0];
+          const lName = user.lName[0];
+
           const { displayName, photoURL, email } = res.user;
           const userInfo = {
             isSignedIn: true,
@@ -144,10 +145,13 @@ const Login = () => {
             showError: false,
             isLoggedIn: true,
             showName: false,
+            fName: fName,
+            lName: lName,
           };
           setUser(userInfo);
           setLoggedInUser(userInfo);
           history.replace(from);
+          console.log(loggedInUser);
         })
         .catch((error) => {
           const errorMessage = error.message;
@@ -169,11 +173,10 @@ const Login = () => {
       .signInWithEmailAndPassword(user.email[0], user.password[0])
       .then((res) => {
         var users = res.user;
-        console.log(users);
         const { displayName, photoURL, email } = res.user;
         const userInfo = {
           isSignedIn: true,
-          name: displayName,
+          name: email,
           email: email,
           photo: photoURL,
           success: true,
@@ -212,9 +215,10 @@ const Login = () => {
       userInfo[e.target.name] = [e.target.value];
       setUser(userInfo);
       setLoggedInUser(userInfo);
+      console.log(user);
     }
   };
-  
+
   return (
     <div className="text-center login-main">
       <div className="create-account-main-div">

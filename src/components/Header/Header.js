@@ -6,10 +6,12 @@ import logo from "../../Icon/Logo.png";
 import "./Header.css";
 import { userContext } from "./../Home/Home";
 import { Link } from "react-router-dom";
+import { useParams } from "react-router";
 
-const Header = () => {
+const Header = (props) => {
+  const { name } = useParams();
   const [loggedInUser, setLoggedInUser] = useContext(userContext);
-
+  console.log(loggedInUser);
   const signOut = () => {
     firebase
       .auth()
@@ -39,29 +41,30 @@ const Header = () => {
         <Navbar.Brand className="logo" href="#home">
           <img src={logo} alt="" />
         </Navbar.Brand>
-
         <div className="menu ">
-          <div className="col-sm-12 profile-name">
-            {loggedInUser.showName ? (
-              <li className="profile-name ">{loggedInUser.name}</li>
-            ) : (
-              <li className="profile-name">
-                {(loggedInUser.fName[0], loggedInUser.lName[0])}
-              </li>
-            )}
-          </div>
           <Link to="/login">
             <li>Contact</li>
           </Link>
           <Link to="/login">
             <li>Blog</li>
           </Link>
-          <Link to="/home">
+          <Link to={`/destination/${name}`}>
             <li>Destination</li>
           </Link>
           <Link to="/home">
             <li>Home</li>
           </Link>
+          {loggedInUser.isLoggedIn && (
+            <div className="col-sm-12 profile-name">
+              {loggedInUser.showName ? (
+                <li className="profile-name ">{loggedInUser.name}</li>
+              ) : (
+                <li className="profile-name">
+                  {loggedInUser.fName} {loggedInUser.lName}
+                </li>
+              )}
+            </div>
+          )}
         </div>
         {loggedInUser.isLoggedIn ? (
           <Link to="/login">
