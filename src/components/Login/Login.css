@@ -1,19 +1,42 @@
-
 .login-main {
-  background-color: white;
+  background-color: rgb(0, 0, 0);
+  /* min-width: 100%;
+  min-height: 100%;
+  background-position: center;
+  background-size: cover; */
 }
 .create-account-main-div {
-  width: 90%;
+  width: 100%;
   margin: auto;
   /* border: 1px solid red; */
-  margin-top: 50px;
+  /* margin-top: 50px; */
 }
 .form input {
-  width: 70%;
+  /* width: 70%;
   padding: 9px;
   border: none;
   border-bottom: 1px solid gray;
-  margin-top: 12px;
+  margin-top: 12px; */
+  /* width: 70%; */
+  border: 0;
+  outline: none;
+  border: 2px solid rgb(19, 87, 212);
+  background-color: rgba(0, 0, 0, 0.5);
+  padding: 15px 30px;
+  text-align: center;
+  margin-top: 13px;
+  font-size: 16px;
+  color: white;
+  border-radius: 50px;
+  animation-name: example;
+  animation-duration: 8s;
+}
+
+.form input:hover {
+  border: 2px solid #009900;
+  padding: 15px 50px;
+  border-radius: 50px;
+  transition: 0.25s;
 }
 .form button {
   margin-top: 25px;
@@ -22,11 +45,21 @@
 }
 .input-box {
   padding: 20px;
-  /* border: 1px solid rgb(10, 10, 10); */
-  width: 500px;
+  padding-bottom: 50px;
+  /* border: 1px solid rgb(117, 113, 113); */
+  width: 450px;
   box-shadow: 10px 10px 40px gray;
   margin: auto;
   border-radius: 10px;
+  background-color: rgb(0, 0, 0);
+}
+@keyframes example {
+  from {
+    border: 2px solid rgb(255, 22, 100);
+  }
+  to {
+    border: 2px solid rgb(240, 79, 16);
+  }
 }
 .google-btn {
   margin-top: 20px;
@@ -47,4 +80,10 @@
 }
 .totgle-btn {
   margin-top: 5px;
+}
+.already-have {
+  color: white;
+}
+.input-title{
+  color: rgb(208, 210, 212);
 }

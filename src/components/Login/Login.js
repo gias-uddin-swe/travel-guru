@@ -14,6 +14,8 @@ if (!firebase.apps.length) {
 
 const Login = () => {
   const [loggedInUser, setLoggedInUser] = useContext(userContext);
+  const [confirmPassword, setConfirmPassword] = useState(true);
+  console.log(confirmPassword);
   console.log(loggedInUser);
   const [newUser, setNewUser] = useState(false);
   const history = useHistory();
@@ -114,9 +116,9 @@ const Login = () => {
     if (e.target.name === "password") {
       isValid = /^(?=.*\d)(?=.*[a-zA-Z])[a-zA-Z0-9]{6,}$/.test(e.target.value);
     }
-    if (e.target.name === "repassword") {
-      isValid = /^(?=.*\d)(?=.*[a-zA-Z])[a-zA-Z0-9]{6,}$/.test(e.target.value);
-    }
+    // if (e.target.name === "repassword") {
+    //   isValid = /^(?=.*\d)(?=.*[a-zA-Z])[a-zA-Z0-9]{6,}$/.test(e.target.value);
+    // }
     if (isValid) {
       const userInfo = { ...user };
       userInfo[e.target.name] = [e.target.value];
@@ -126,7 +128,7 @@ const Login = () => {
 
   const handleCreateUser = (e) => {
     e.preventDefault();
-    if (user.email && user.password) {
+    if (confirmPassword && user.email && user.password) {
       firebase
         .auth()
         .createUserWithEmailAndPassword(user.email[0], user.password[0])
@@ -219,13 +221,32 @@ const Login = () => {
     }
   };
 
+  const handleConfirmPassword = (e) => {
+    if (user.password[0] != e.target.value) {
+      const userInfo = { ...user };
+      userInfo.error =
+        "your confirm password is did  not match with the password";
+      userInfo.showError = true;
+      setUser(userInfo);
+      setConfirmPassword(false);
+      console.log(user);
+    } else {
+      const userInfo = { ...user };
+      userInfo.error = "";
+      userInfo.showError = false;
+      setUser(userInfo);
+      setConfirmPassword(true);
+      console.log(user);
+    }
+  };
+
   return (
     <div className="text-center login-main">
       <div className="create-account-main-div">
         <div className="input-box">
-          {newUser ? <h1>Create an account</h1> : <h1>Login your account</h1>}
+          {newUser ? <h1 className="input-title">Create an account</h1> : <h1 className="input-title">Login your account</h1>}
           {user.showError ? (
-            <p style={{ color: "red" }}>{user.error}</p>
+            <p  style={{ color: "red" }}>{user.error}</p>
           ) : (
             user.success && (
               <p style={{ color: "green" }}>User Logged in successfully </p>
@@ -273,7 +294,8 @@ const Login = () => {
             <br />
             {newUser && (
               <input
-                onBlur={handleBlur}
+                // onChange={handleBlur}
+                onBlur={handleConfirmPassword}
                 type="password"
                 name="repassword"
                 id=""
@@ -300,19 +322,23 @@ const Login = () => {
             )}
 
             {newUser ? (
-              <p>
+              <p className="already-have">
                 already have an account?
                 <span
-                  style={{ color: "red" }}
+                  style={{ color: "red", marginLeft: "5px" }}
                   onClick={() => setNewUser(false)}
                 >
                   Login
                 </span>
               </p>
             ) : (
-              <p>
+              <p className="already-have">
                 you don't have account ?
-                <span style={{ color: "red" }} onClick={() => setNewUser(true)}>
+                <span
+                  id="login-create"
+                  style={{ color: "red", marginLeft: "5px" }}
+                  onClick={() => setNewUser(true)}
+                >
                   Create
                 </span>
               </p>
