@@ -2,6 +2,15 @@
 
 Check Out Travel Guru App Live Preview [my Live site Link](https://react-authh.web.app/).
 
+# Key Features
+ 
+ This is a travel services website. Users can choose a vehicle to travel 
+anywhere. 
+
+ Users can see their current and destination via Google Map. 
+
+ Users can create accounts and log in via firebase. 
+
 ## Features
 
 1.Fully responsive And Dynamic Webb App
