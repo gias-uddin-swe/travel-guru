@@ -2,7 +2,23 @@
 
 Check Out Travel Guru App Live Preview [my Live site Link](https://react-authh.web.app/).
 
+[Linkedin](https://www.linkedin.com/in/gias-uddin-4167181b5//).
+
+[Portfolio](https://gias-uddin.web.app/).
+
 # Key Features
+ 
+ This is Travel service Agency website.user can login via Facebook sign-in,Google Sign-in and also Can Create an New Account for use the services.user can Choice the service as he/she want.
+
+User can Choice the perfect vehicle as he/she Want
+
+user also can see his/her Current location to Destination in Google Map
+
+Firebase Authentication Used in this Website
+
+Uer Can Login via (Google,Facebook,Github)also can Create Account
+
+Front-end Technology: React js, Bootstrap,React Router,Firebase Authentication,Wow js
  
  This is a travel services website. Users can choose a vehicle to travel 
 anywhere. 
